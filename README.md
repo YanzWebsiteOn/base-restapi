@@ -48,7 +48,7 @@ Untuk memulai, klon repositori ini ke terminal Anda dan instal:
 git clone https://github.com/ArixOffc/base-restapi.git
 cd base-restapi
 npm install
-node index.js
+npm start
 ```
 
 Server API akan berjalan di [http://localhost:3000](http://localhost:3000) default.
@@ -169,10 +169,10 @@ Website ini memudahkan pengujian dan interaksi dengan endpoint API :
 ## 🧠 Tips Untuk Development
 
 - Gunakan **`.env`** file untuk menjaga informasi sensitif seperti keamanan API tetap aman.
-- Use **`nodemon`** untuk memulai ulang otomatis saat mengembangkan:
+- Use **`dev`** untuk memulai ulang otomatis saat mengembangkan:
 
 ```bash
-npx nodemon index.js
+npm run dev
 ```
 ---
 
