@@ -1,0 +1,39 @@
+{
+    "status": true,
+    "api": [
+        {
+            "kategory": "AI",
+            "endpoint": [
+                {
+                    "path": "/api/ai/lumin",
+                    "method": "GET",
+                    "parameter": [
+                        "content"
+                    ],
+                    "description": "Lumin Ai"
+                },
+                {
+                    "path": "/api/ai/hydromind",
+                    "method": "GET",
+                    "parameter": [
+                        "text"
+                    ],
+                    "description": "hydromind AI endpoint"
+                }
+            ]
+        },
+        {
+            "kategory": "maker",
+            "endpoint": [
+                {
+                    "path": "/api/maker/brat",
+                    "method": "GET",
+                    "parameter": [
+                        "text"
+                    ],
+                    "description": "Anomali Image Brat Meme"
+                }
+            ]
+        }
+    ]
+}

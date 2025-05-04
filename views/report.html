@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Issue | Rixz API</title>
+    <link rel="stylesheet" href="/css/report.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+
+<body>
+    <div class="report-page">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo animate__animated animate__fadeIn">
+                    <i class="fas fa-bolt"></i>
+                    <span>RixzAPI</span>
+                </div>
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="/" class="nav-link">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/documentation" class="nav-link">
+                            <i class="fas fa-book"></i>
+                            <span>Documentation</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/monitor" class="nav-link">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Monitor</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/report" class="nav-link active">
+                            <i class="fas fa-bug"></i>
+                            <span>Report</span>
+                            <span class="nav-ping animate__animated animate__pulse animate__infinite"></span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <h1 class="animate__animated animate__fadeInDown">Report an Issue</h1>
+                <div class="header-actions">
+                    <div class="time-display">
+                        <i class="fas fa-clock"></i>
+                        <span id="current-time">--:--:--</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content animate__animated animate__fadeIn">
+                <div class="report-container">
+                    <div class="report-header">
+                        <h2><i class="fas fa-exclamation-circle"></i> Found a bug or having problems with our API?</h2>
+                        <p>Please fill out the form below to report any issues or suggest improvements.</p>
+                    </div>
+
+                    <div class="report-card animate__animated animate__fadeInUp">
+                        <div class="form-group">
+                            <label for="issue-type">
+                                <i class="fas fa-tag"></i> Issue Type
+                            </label>
+                            <div class="select-wrapper">
+                                <select id="issue-type" class="form-select">
+                                    <option value="bug">Bug Report</option>
+                                    <option value="feature">Feature Request</option>
+                                    <option value="performance">Performance Issue</option>
+                                    <option value="security">Security Concern</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="issue-description">
+                                <i class="fas fa-align-left"></i> Description
+                            </label>
+                            <textarea id="issue-description" class="form-textarea" rows="6"
+                                placeholder="Please describe the issue in detail. Include steps to reproduce if possible..."></textarea>
+                            <div class="char-counter" id="desc-counter">0/1000</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-info">
+                                <i class="fas fa-envelope"></i> Contact Information (optional)
+                            </label>
+                            <input type="text" id="contact-info" class="form-input"
+                                placeholder="Email or Discord username">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="screenshot">
+                                <i class="fas fa-image"></i> Screenshot (optional)
+                            </label>
+                            <div class="file-upload">
+                                <input type="file" id="screenshot" accept="image/*">
+                                <label for="screenshot" class="upload-btn">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <span>Choose file</span>
+                                </label>
+                                <span class="file-name" id="file-name">No file chosen</span>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button id="submit-report" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i> Submit Report
+                            </button>
+                            <button id="cancel-report" class="btn btn-outline">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="/js/report.js"></script>
+</body>
+
+</html>

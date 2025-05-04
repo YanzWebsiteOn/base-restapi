@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Monitor | Rixz API</title>
+    <link rel="stylesheet" href="/css/monitor.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="monitor-page">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo animate__animated animate__fadeIn">
+                    <i class="fas fa-bolt"></i>
+                    <span>RixzAPI</span>
+                </div>
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="/" class="nav-link">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/documentation" class="nav-link">
+                            <i class="fas fa-book"></i>
+                            <span>Documentation</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/monitor" class="nav-link active">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Monitor</span>
+                            <span class="nav-ping animate__animated animate__pulse animate__infinite"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/report" class="nav-link">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Report</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <h1 class="animate__animated animate__fadeInDown">API Monitoring Dashboard</h1>
+                <div class="header-actions">
+                    <div class="refresh-btn" id="refresh-btn">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Refresh</span>
+                    </div>
+                    <div class="time-display">
+                        <i class="fas fa-clock"></i>
+                        <span id="current-time">--:--:--</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content animate__animated animate__fadeIn">
+                <div class="stats-grid">
+                    <div class="stat-card animate__animated animate__fadeInUp" style="--delay: 0.1s">
+                        <div class="stat-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="total-requests">0</div>
+                            <div class="stat-label">Total Requests</div>
+                        </div>
+                        <div class="stat-trend up">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>12%</span>
+                        </div>
+                        <div class="stat-wave"></div>
+                    </div>
+
+                    <div class="stat-card animate__animated animate__fadeInUp" style="--delay: 0.2s">
+                        <div class="stat-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="uptime">0h 0m</div>
+                            <div class="stat-label">Uptime</div>
+                        </div>
+                        <div class="stat-trend stable">
+                            <i class="fas fa-check"></i>
+                            <span>100%</span>
+                        </div>
+                        <div class="stat-wave"></div>
+                    </div>
+
+                    <div class="stat-card animate__animated animate__fadeInUp" style="--delay: 0.3s">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="success-rate">0%</div>
+                            <div class="stat-label">Success Rate</div>
+                        </div>
+                        <div class="stat-trend up">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>2%</span>
+                        </div>
+                        <div class="stat-wave"></div>
+                    </div>
+
+                    <div class="stat-card animate__animated animate__fadeInUp" style="--delay: 0.4s">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="active-users">0</div>
+                            <div class="stat-label">Active Users</div>
+                        </div>
+                        <div class="stat-trend down">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>5%</span>
+                        </div>
+                        <div class="stat-wave"></div>
+                    </div>
+                </div>
+
+                <div class="charts-row">
+                    <div class="chart-container animate__animated animate__fadeInLeft">
+                        <div class="chart-header">
+                            <h3><i class="fas fa-microchip"></i> CPU Usage</h3>
+                            <div class="chart-legend">
+                                <span class="legend-item"><span class="legend-color cpu"></span> Usage</span>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="cpu-chart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-container animate__animated animate__fadeInRight">
+                        <div class="chart-header">
+                            <h3><i class="fas fa-memory"></i> Memory Usage</h3>
+                            <div class="chart-legend">
+                                <span class="legend-item"><span class="legend-color used"></span> Used</span>
+                                <span class="legend-item"><span class="legend-color free"></span> Free</span>
+                                <span class="legend-item"><span class="legend-color cached"></span> Cached</span>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="memory-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tables-row">
+                    <div class="table-container animate__animated animate__fadeInUp">
+                        <div class="table-header">
+                            <h3><i class="fas fa-list-ol"></i> Top Endpoints</h3>
+                            <div class="table-actions">
+                                <button class="table-action-btn">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table id="top-endpoints">
+                                <thead>
+                                    <tr>
+                                        <th>Endpoint</th>
+                                        <th>Requests</th>
+                                        <th>Success</th>
+                                        <th>Fail</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="table-container animate__animated animate__fadeInUp">
+                        <div class="table-header">
+                            <h3><i class="fas fa-history"></i> Recent Activity</h3>
+                            <div class="table-actions">
+                                <button class="table-action-btn">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table id="recent-activity">
+                                <thead>
+                                    <tr>
+                                        <th>Endpoint</th>
+                                        <th>Last Used</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="/js/monitor.js"></script>
+</body>
+
+</html>
